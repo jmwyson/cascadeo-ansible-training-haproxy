@@ -33,9 +33,9 @@ frontend main *:80
 
 backend app
     balance     roundrobin
-    {% for server in servers %}
-    server app{{ loop.index }} {{ hostvars[server].ansible_default_ipv4.ipaddress }}:80 weight 1 maxconn 100 check
-    {% endfor %}
+{% for server in servers_to_balance %}
+    server app{{ loop.index }} {{ server }}:80 weight 1 maxconn 100 check
+{% endfor %}
     
 
  
