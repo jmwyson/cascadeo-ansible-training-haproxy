@@ -11,9 +11,11 @@
     dest: /etc/haproxy/haproxy.cfg
   vars:
     servers_to_balance: "{{ servers }}"
+  notify:
+    - restart haproxy
 
-- name: start and enable haproxy
+- name: enable haproxy
   service:
     name: haproxy
-    state: restarted
+    state: started
     enabled: yes
